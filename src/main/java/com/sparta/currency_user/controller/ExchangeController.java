@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -54,5 +55,20 @@ public class ExchangeController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(exchangeService.saveExchangeRequest(exchangeInfoDto));
+    }
+
+
+    @GetMapping("/users/{user_id}/exchanges")
+    public ResponseEntity<List<ExchangeResponseDto>> readExchangeList(
+            @PathVariable Long userId
+    ){
+
+        /* 유저 가져오기 */
+        User user = userService.findUserById(userId);
+
+        /* 유저의 id로 유저의 환전 요청 내역 조회 */
+        List<ExchangeResponseDto> resultList = exchangeService.getExchangeInfos(user.getId());
+
+        return ResponseEntity.status(HttpStatus.OK).body(resultList);
     }
 }

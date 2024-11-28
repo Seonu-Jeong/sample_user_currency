@@ -9,6 +9,8 @@ import com.sparta.currency_user.repository.ExchangeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ExchangeService {
@@ -32,5 +34,13 @@ public class ExchangeService {
         UserCurrency savedUserCurrency = exchangeRepository.save(userCurrency);
 
         return new ExchangeResponseDto(savedUserCurrency);
+    }
+
+    public List<ExchangeResponseDto> getExchangeInfos(Long userId) {
+        List<UserCurrency> resultList =  exchangeRepository.findByUserId(userId);
+
+        return resultList.stream()
+                .map(ExchangeResponseDto::new)
+                .toList();
     }
 }
