@@ -59,7 +59,7 @@ public class ExchangeController {
     }
 
 
-    @GetMapping("/users/{user_id}/exchanges")
+    @GetMapping("/users/{userId}/exchanges")
     public ResponseEntity<List<ExchangeResponseDto>> readExchangeList(
             @PathVariable Long userId
     ){
@@ -73,7 +73,7 @@ public class ExchangeController {
         return ResponseEntity.status(HttpStatus.OK).body(resultList);
     }
 
-    @PatchMapping("/users/{user_id}/exchanges/{exchange_id}")
+    @PatchMapping("/users/{userId}/exchanges/{exchangeId}")
     public ResponseEntity<ExchangeResponseDto> cancleExchange(
             @PathVariable Long userId,
             @PathVariable Long exchangeId
