@@ -1,16 +1,21 @@
 package com.sparta.currency_user.entity;
 
+import com.sparta.currency_user.enums.ExchangeStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "user_currency")
 public class UserCurrency {
@@ -27,23 +32,24 @@ public class UserCurrency {
     @JoinColumn(name = "to_currency_id")
     private Currency currency;
 
-    private Long amount_in_krw;
+    private BigDecimal amountInKrw;
 
-    private BigDecimal amount_after_exchange;
+    private BigDecimal amountAfterExchange;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ExchangeStatus status;
 
-    public UserCurrency(User user, Currency currency, Long amount_id_krw, BigDecimal amount_after_exchange, String status) {
+    public UserCurrency(User user, Currency currency, BigDecimal amountInKrw, BigDecimal amountAfterExchange, ExchangeStatus status) {
         this.user = user;
         this.currency = currency;
-        this.amount_in_krw = amount_id_krw;
-        this.amount_after_exchange = amount_after_exchange;
+        this.amountInKrw = amountInKrw;
+        this.amountAfterExchange = amountAfterExchange;
         this.status = status;
     }
 
     @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime modifiedAt;

@@ -33,4 +33,9 @@ public class CurrencyService {
         Currency savedCurrency = currencyRepository.save(currencyRequestDto.toEntity());
         return new CurrencyResponseDto(savedCurrency);
     }
+
+    public Currency findCurrencyByName(String currencyName) {
+        return currencyRepository.findByCurrencyName(currencyName)
+                .orElseThrow(()-> new IllegalArgumentException("해당 통화이름을 찾을 수 없습니다."));
+    }
 }
