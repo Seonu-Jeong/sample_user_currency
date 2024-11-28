@@ -3,6 +3,7 @@ package com.sparta.currency_user.controller;
 import com.sparta.currency_user.dto.*;
 import com.sparta.currency_user.entity.Currency;
 import com.sparta.currency_user.entity.User;
+import com.sparta.currency_user.entity.UserCurrency;
 import com.sparta.currency_user.enums.ExchangeStatus;
 import com.sparta.currency_user.service.CurrencyService;
 import com.sparta.currency_user.service.ExchangeService;
@@ -71,4 +72,20 @@ public class ExchangeController {
 
         return ResponseEntity.status(HttpStatus.OK).body(resultList);
     }
+
+    @PatchMapping("/users/{user_id}/exchanges/{exchange_id}")
+    public ResponseEntity<ExchangeResponseDto> cancleExchange(
+            @PathVariable Long userId,
+            @PathVariable Long exchangeId
+    ) {
+        /* 유저 검증 */
+        User user = userService.findUserById(userId);
+
+        /* 환전 내역 취소 */
+        ExchangeResponseDto exchangeResponseDto = exchangeService.cancelExchangeRequest(exchangeId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(exchangeResponseDto);
+    }
+
+
 }
