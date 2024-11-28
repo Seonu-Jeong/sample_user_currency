@@ -27,7 +27,7 @@ public class UserCurrency {
     @JoinColumn(name = "to_currency_id")
     private Currency currency;
 
-    private Long amount_id_krw;
+    private Long amount_in_krw;
 
     private BigDecimal amount_after_exchange;
 
@@ -36,7 +36,7 @@ public class UserCurrency {
     public UserCurrency(User user, Currency currency, Long amount_id_krw, BigDecimal amount_after_exchange, String status) {
         this.user = user;
         this.currency = currency;
-        this.amount_id_krw = amount_id_krw;
+        this.amount_in_krw = amount_id_krw;
         this.amount_after_exchange = amount_after_exchange;
         this.status = status;
     }
