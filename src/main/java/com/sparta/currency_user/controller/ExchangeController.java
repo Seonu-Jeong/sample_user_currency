@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -88,5 +89,15 @@ public class ExchangeController {
         return ResponseEntity.status(HttpStatus.OK).body(exchangeResponseDto);
     }
 
+    @GetMapping("/users/{userId}/exchanges/groups")
+    public ResponseEntity<ExchangeTotalInfoDto> getExchangeRequestGroups(
+            @PathVariable Long userId
+    ) {
+        User user = userService.findUserById(userId);
+
+        ExchangeTotalInfoDto exchangeTotalInfoDto = exchangeService.findUsersTotalExchangeInfo(user);
+
+        return ResponseEntity.status(HttpStatus.OK).body(exchangeTotalInfoDto);
+    }
 
 }
