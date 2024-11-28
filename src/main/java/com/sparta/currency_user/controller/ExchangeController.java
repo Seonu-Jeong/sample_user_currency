@@ -8,6 +8,7 @@ import com.sparta.currency_user.enums.ExchangeStatus;
 import com.sparta.currency_user.service.CurrencyService;
 import com.sparta.currency_user.service.ExchangeService;
 import com.sparta.currency_user.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class ExchangeController {
     @PostMapping("/users/{userId}/exchanges")
     public ResponseEntity<ExchangeResponseDto> requestExchange(
             @PathVariable Long userId,
-            @RequestBody ExchangeRequestDto exchangeRequestDto
+            @Valid @RequestBody ExchangeRequestDto exchangeRequestDto
     ){
 
         /* 유저 가져오기 */
