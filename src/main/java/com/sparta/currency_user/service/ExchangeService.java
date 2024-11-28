@@ -33,7 +33,7 @@ public class ExchangeService {
         UserCurrency userCurrency = new UserCurrency(
                 exchangeInfoDto.getUser(),
                 exchangeInfoDto.getCurrency(),
-                exchangeInfoDto.getAmountAfterExchange(),
+                exchangeInfoDto.getAmountInKrw(),
                 exchangeInfoDto.getAmountAfterExchange(),
                 exchangeInfoDto.getStatus()
         );
