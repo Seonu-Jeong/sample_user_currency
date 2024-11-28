@@ -34,6 +34,7 @@ public class UserCurrency {
 
     private BigDecimal amountAfterExchange;
 
+    @Enumerated(EnumType.STRING)
     private ExchangeStatus status;
 
     public UserCurrency(User user, Currency currency, BigDecimal amountInKrw, BigDecimal amountAfterExchange, ExchangeStatus status) {
