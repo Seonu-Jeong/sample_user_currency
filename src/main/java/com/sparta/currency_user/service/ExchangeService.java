@@ -2,13 +2,15 @@ package com.sparta.currency_user.service;
 
 import com.sparta.currency_user.dto.ExchangeInfoDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
+import com.sparta.currency_user.dto.ExchangeTotalInfoDto;
 import com.sparta.currency_user.entity.Currency;
+import com.sparta.currency_user.entity.User;
 import com.sparta.currency_user.entity.UserCurrency;
 import com.sparta.currency_user.enums.ExchangeStatus;
 import com.sparta.currency_user.repository.ExchangeRepository;
+import com.sparta.currency_user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,5 +60,11 @@ public class ExchangeService {
         userCurrency.setStatus(ExchangeStatus.CANCELED);
 
         return new ExchangeResponseDto(userCurrency);
+    }
+
+    public ExchangeTotalInfoDto findUsersTotalExchangeInfo(User user) {
+        return exchangeRepository.findUsersTotalExchangeInfo(user)
+                .orElseThrow(() -> new IllegalArgumentException("환전 요청 내역이 없습니다."));
+
     }
 }
