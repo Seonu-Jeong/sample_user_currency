@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface ExchangeRepository extends JpaRepository<UserCurrency,Long> {
 
-    List<UserCurrency> findByUserId(String userId);
+    List<UserCurrency> findByUserId(Long userId);
 }
