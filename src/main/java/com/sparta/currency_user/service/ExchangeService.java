@@ -19,7 +19,7 @@ public class ExchangeService {
 
     private final CurrencyService currencyService;
 
-    public ExchangeResponseDto save(ExchangeInfoDto exchangeInfoDto) {
+    public ExchangeResponseDto saveExchangeRequest(ExchangeInfoDto exchangeInfoDto) {
 
         UserCurrency userCurrency = new UserCurrency(
                 exchangeInfoDto.getUser(),

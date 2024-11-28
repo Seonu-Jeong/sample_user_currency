@@ -53,6 +53,6 @@ public class ExchangeController {
         );
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(exchangeService.save(exchangeInfoDto));
+                .body(exchangeService.saveExchangeRequest(exchangeInfoDto));
     }
 }
