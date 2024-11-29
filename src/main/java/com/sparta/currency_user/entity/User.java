@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Getter
-public class User {
+public class User extends TimeBaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
